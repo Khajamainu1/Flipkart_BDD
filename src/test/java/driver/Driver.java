@@ -1,5 +1,7 @@
 package driver;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 //import com.automation.enums.ConfigProperties;
 //import com.automation.utils.PropertyUtils;
 import org.openqa.selenium.WebDriver;
@@ -27,7 +29,7 @@ public class Driver {
 
     public static WebDriver initDriver() {
         String browserType = PropertyUtils.getConfigProperty(ConfigProperties.BROWSER);
-        String runMode = PropertyUtils.getConfigProperty(ConfigProperties.RUNMODE);
+        String runMode = PropertyUtils.getConfigProperty(ConfigProperties.RUNMODE);  //remote  //local
 
         if (browserType == null || browserType.isEmpty()) {
             throw new IllegalArgumentException("Browser type is not specified in the properties file.");
@@ -111,5 +113,10 @@ public class Driver {
 
     public static WebDriver getDriver() {
         return driver.get();
+    }
+    
+    
+    public static String getBase64Screenshot() {
+    	return ((TakesScreenshot) driver.get()).getScreenshotAs(OutputType.BASE64);
     }
 }

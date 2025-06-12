@@ -20,7 +20,7 @@ public class PropertyUtils {
             prop.load(fis);
 
             for (String key : prop.stringPropertyNames()) {
-                map.put(key, prop.getProperty(key));
+                map.put(key, prop.getProperty(key));  
             }
 
         } catch (FileNotFoundException e) {
@@ -33,7 +33,7 @@ public class PropertyUtils {
     }
 
     public static String getConfigProperty(ConfigProperties key) {
-        String value = map.get(key.name().toLowerCase());
+        String value = map.get(key.name().toLowerCase());  
         if (value != null) {
             return value;
         } else {

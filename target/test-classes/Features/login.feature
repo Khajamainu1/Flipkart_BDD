@@ -9,10 +9,4 @@ When : User enter the valid username and password
 And : Click on login button
 Then : Verify user logged in successfully.
 
-Scenario: Test with invalid data
-
-Given : User navigates to the url
-When : User enter the invalid username and password
-And : Click on login button
-Then : Verify user logged in successfully.
 

@@ -1,5 +1,6 @@
 package stepFiles;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import driver.Driver;
@@ -14,6 +15,7 @@ public class Login {
 	@Given(": User navigates to the url")
 	public void user_navigates_to_the_url() {
 	System.out.println(driver.getTitle());
+	driver.findElement(By.xpath("ll"));
 	   System.out.println("Given : url");
 	}
 
