@@ -6,7 +6,9 @@ public enum ConfigProperties {
 	BROWSER,
 	URL,
 	EMAILPHONE,
-	PASSWORD;
+	PASSWORD,
+	EMAIL,
+	EMAILAPPPASSWORD;
 	
 
 }
