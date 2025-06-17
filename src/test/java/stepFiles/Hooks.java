@@ -1,9 +1,11 @@
 package stepFiles;
 
 import driver.Driver;
+import enums.ConfigProperties;
 import io.cucumber.java.*;
 import reports.ExtentLogger;
 import reports.ExtentReportManager;
+import utils.PropertyUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,21 +20,32 @@ public class Hooks {
         ExtentReportManager.getInstance(); // Start Extent Report
     }
 
+//    public static boolean isReportingEnabled() {
+//        return Boolean.parseBoolean(getConfigProperty("reporting.enabled"));
+//    }
+   
     @AfterAll
-    public static void afterAll() {
+    public static void afterAll() 
+    {
         ExtentReportManager.flushReports();
 
-        try {
-            File reportFile = new File(System.getProperty("user.dir") + "/target/ExtentReports/ExtentReport.html");
-            if (reportFile.exists()) {
-                java.awt.Desktop.getDesktop().browse(reportFile.toURI());
-            } else {
-                System.out.println("Report not found at: " + reportFile.getAbsolutePath());
+        if (Boolean.parseBoolean(PropertyUtils.getConfigProperty(ConfigProperties.REPORTINGENABLED)))
+        {
+            try {
+                File reportFile = new File(System.getProperty("user.dir") + "/target/ExtentReports/ExtentReport.html");
+                if (reportFile.exists())
+                {
+                    java.awt.Desktop.getDesktop().browse(reportFile.toURI());
+                } else {
+                    System.out.println("Report not found at: " + reportFile.getAbsolutePath());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            }
+        } else {
+            System.out.println("Reporting is disabled. Not opening the report.");
         }
+    }
 
     @Before
     public void setUp(Scenario scenario) {

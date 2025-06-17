@@ -56,10 +56,29 @@
         <version>2.0.1</version>
     </dependency>
 
-    <dependency>
-    	<groupId>Automation_Naukri</groupId>
-    	<artifactId>Automation_Naukri</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    </dependency>
+    
   </dependencies>
+  
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.5.3</version>
+            <configuration>
+                <!-- Run tests ending with *Test or *Runner -->
+                <includes>
+                    <include>**/*Test.java</include>
+                    <include>**/*Runner.java</include>
+                </includes>
+                
+        <systemPropertyVariables>
+            <browser>${browser}</browser>
+            <url>${url}</url>
+        </systemPropertyVariables>
+            </configuration>
+            
+        </plugin>
+    </plugins>
+</build>
 </project>

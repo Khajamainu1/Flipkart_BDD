@@ -15,6 +15,7 @@ public class ExtentReportManager {
             ExtentSparkReporter reporter = new ExtentSparkReporter("target/ExtentReports/ExtentReport.html");
             extentReports = new ExtentReports();
             extentReports.attachReporter(reporter);
+            
         }
         return extentReports;
     }
