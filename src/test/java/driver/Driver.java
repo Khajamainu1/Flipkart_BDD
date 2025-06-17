@@ -28,7 +28,12 @@ public class Driver {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static WebDriver initDriver() {
-        String browserType = PropertyUtils.getConfigProperty(ConfigProperties.BROWSER);
+    	
+    	// If browser is passed via Jenkins, use it; else use what's in config.properties
+    	String browserType = System.getProperty("browser", PropertyUtils.getConfigProperty(ConfigProperties.BROWSER));
+    	
+    	//If we are not using Jenkins we can use this below line
+//      String browserType = PropertyUtils.getConfigProperty(ConfigProperties.BROWSER);
         String runMode = PropertyUtils.getConfigProperty(ConfigProperties.RUNMODE);  //remote  //local
 
         if (browserType == null || browserType.isEmpty()) {
